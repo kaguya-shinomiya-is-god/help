@@ -7,9 +7,12 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants;
 import frc.robot.utils.Driver;
@@ -21,11 +24,17 @@ public class DriveSubsystem extends SubsystemBase {
   private VictorSPX motor_left2 = new VictorSPX(Constants.MOTOR_LEFT2_ID);
   private Driver m_Driver;
   private Timer timer = new Timer();
+  public AHRS ahrs;
   double powers[] = {0,0};
   
   /** Creates a new DriveTrain. */
   public DriveSubsystem() {
     init_motors();
+    try {
+      ahrs = new AHRS(SPI.Port.kMXP);
+    } catch (RuntimeException ex ) {
+      DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+    }
   }
 
   @Override

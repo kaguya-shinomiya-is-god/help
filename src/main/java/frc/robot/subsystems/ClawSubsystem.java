@@ -20,7 +20,7 @@ public class ClawSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Claw Encoder", claw.getEncoder().getPosition());
-    SmartDashboard.putBoolean("Is Opeb", clawIsOpen);
+    SmartDashboard.putBoolean("Is Opem", clawIsOpen);
   }
 
   @Override

@@ -38,9 +38,7 @@ public class ArmSubsystem extends SubsystemBase {
   }
  
   @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
+  public void simulationPeriodic() { }
 
   public void armUp(){
     SmartDashboard.putString("Arm Direction", "Up");
